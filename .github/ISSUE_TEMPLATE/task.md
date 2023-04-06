@@ -1,16 +1,13 @@
 ---
 name: Task
 about: Task
-title: 'Task - '
+title: "Task - "
 labels: task
-assignees: ''
-
+assignees: ""
 ---
 
 ## Task
 
 Related GitHub User Story: #
-
-
 
 ### Description
