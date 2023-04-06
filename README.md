@@ -1,73 +1,88 @@
-# Code Project Template
+# AWS SSM Build Secrets for GitHub Actions
 
-This repository is a template for code projects at VA.
+This action injects AWS SSM Parameter Store secrets as environment variables into your GitHub Actions builds.
 
-While this template doesn't contain code -- that's for you to add -- it does have the issue templates and standard folder structure you will need for agile project management at VA. 
+It makes it easier to follow [Amazon IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in respect to principle of least privilege and tracking credentials usage. Combined with the `aws-actions/configure-aws-credentials` action, this allows you to inject any combination of secrets from multiple stores, using different credential contexts.
 
-Take this template, and add your code. Also add documentation for configuration management and deployment of your code, including:
+## Contents
 
-- build and deploy instructions
-- information on automated tests, and where to find results 
-- instructions for how to set up local development
+1. [Usage Examples](#usage-examples)
+1. [Supported Parameters](#supported-parameters)
+1. [Event Triggers](#event-triggers)
+1. [Versioning](#versioning)
+1. [How to get help](#how-to-get-help)
+1. [License](#license)
 
-Document this here in your `README.md`, or in individual markdown files in the `docs` folder.
+> **NOTE**: The `marvinpinto/action-inject-ssm-secrets` repository is an automatically generated mirror of the [marvinpinto/actions](https://github.com/marvinpinto/actions) monorepo containing this and other actions. Please file issues and pull requests over there.
 
-After you create your product's code-project repository from this template, please update the Team and Code sections below to link to the appropriate people and code.
+## Usage Examples
 
-Replace these introductory paragraphs with a description of your product. 
+### Inject your production Cloudflare API tokens into a build
 
-For an example that includes code, releases and issues in progress, see our demo Reading Time web application: https://github.com/department-of-veterans-affairs/reading-time-demo
+```yaml
+---
+name: "build-and-invalidate-cf-cache"
 
+on:
+  push:
+    branches:
+      - "master"
 
-## Product
+jobs:
+  ci:
+    runs-on: "ubuntu-latest"
+    env:
+      BUILD_STAGE: "production"
 
-- Product Name:
-- Product Line Portfolio:
+    steps:
+      # ...
 
-## Product Documentation Repository
-- Name of the related Product Documentation Repository
+      - uses: "aws-actions/configure-aws-credentials@v1"
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+          role-to-assume: "arn:aws:iam::111111111111:role/build-and-deploy-website"
+          role-duration-seconds: 1800 # 30 mins
 
-### Team Contacts
+      - uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "/build-secrets/${{ env.BUILD_STAGE }}/cloudflare-account-id"
+          env_variable_name: "cloudflare_account_id"
 
-- Maintained by: @department-of-veterans-affairs/configuration-management
-- Project Manager:
-- Technical Team Lead:
-- Configuration Manager:
+      - uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "/build-secrets/${{ env.BUILD_STAGE }}/cloudflare-api-token"
+          env_variable_name: "cloudflare_api_token"
 
+      - name: "Build & Deploy"
+        run: |
+          echo "You will now have access to the CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN environment variables in all your subsequent build steps"
+```
 
+## Supported Parameters
 
+| Parameter               | Description                                                          | Default |
+| ----------------------- | -------------------------------------------------------------------- | ------- |
+| `ssm_parameter`\*\*     | The AWS SSM parameter key to look up.                                | `null`  |
+| `env_variable_name`\*\* | The corresponding environment variable name to assign the secret to. | `null`  |
 
-## Code Description
-**Note:** GitHub.com repositories should **NOT** contain sensitive information of any kind
+### Notes:
 
+- Parameters denoted with `**` are required.
 
-### Deployment
+## Versioning
 
+Every commit that lands on master for this project triggers an automatic build as well as a tagged release called `latest`. If you don't wish to live on the bleeding edge you may use a stable release instead. See [releases](../../releases/latest) for the available versions.
 
-#### Branching strategy
+```yaml
+- uses: "marvinpinto/action-inject-ssm-secrets@<VERSION>"
+```
 
-**UPDATE THIS FOR YOUR PROJECT AND BUILD STRATEGY**
+## How to get help
 
-Certain branches are special, and would ordinarily be deployed to various test environments:
+The main [README](https://github.com/marvinpinto/actions/blob/master/README.md) for this project has a bunch of information related to debugging & submitting issues. If you're still stuck, try and get a hold of me on [keybase](https://keybase.io/marvinpinto) and I will do my best to help you out.
 
-- master: our default branch, for production-ready code. Master is always deployable. In our case, however, deployment does not happen automatically.
-- pre-prod: code destined for the pre-production test server. This code might be deployed by hand or automatically, depending on the project and availability of a CI/CD solution.
-- test: code that would probably autotmatically be pushed to a test or staging server. Again, in our case we don't do this -- but test deployment tasks like this are ideally automated with a CI/CD solution like Jenkins.
+## License
 
-New code should be produced on a feature branch [following GitHub flow](https://guides.github.com/introduction/flow/). Most often, you'll want to branch from **master**, since that's the latest in production. File a pull request to merge into **test**, which can be deployed to our testing environment.
-
-
-
-### Testing
-
-
-
-
-### Installing
-
-
-
-
-### License
-
-See the [LICENSE](LICENSE.md) file for license rights and limitations.
+The source code for this project is released under the [MIT License](/LICENSE). This project is not associated with GitHub or AWS.
