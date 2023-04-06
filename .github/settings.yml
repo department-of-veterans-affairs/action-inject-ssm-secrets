@@ -1,0 +1,96 @@
+# These settings are synced to GitHub by https://probot.github.io/apps/settings/
+repository:
+  ## VA-CODE-PROJECT-TEMPLATE ##
+  # set this to true to delete merged changes
+  ## VA-CODE-PROJECT-TEMPLATE ##
+  delete_branch_on_merge: false
+branches:
+  - name: master
+    ## VA-CODE-PROJECT-TEMPLATE ##
+    # https://developer.github.com/v3/repos/branches/#update-branch-protection
+    # Branch Protection settings. Set to null to disable
+    # default settings commented out below that should be applied to a new VA code project repository: 
+    # required_pull_request_reviews, equired_approving_review_count, dismiss_stale_reviews, require_code_owner_reviews, and dismissal_restrictions: users: teams:
+    ## VA-CODE-PROJECT-TEMPLATE ##
+    protection:
+      # Required. Require at least one approving review on a pull request, before merging. Set to null to disable.
+      # required_pull_request_reviews:
+        ## The number of approvals required. (1-6)
+        # required_approving_review_count: 1
+        ## Dismiss approved reviews automatically when a new commit is pushed.
+        # dismiss_stale_reviews: true
+        # Blocks merge until code owners have reviewed.
+        # require_code_owner_reviews: false
+        ## Specify which users and teams can dismiss pull request reviews. Pass an empty dismissal_restrictions object to disable. User and team dismissal_restrictions are only available for organization-owned repositories. Omit this parameter for personal repositories.
+        # dismissal_restrictions:
+        #   users: []
+        #   teams: []
+      # Required. Require status checks to pass before merging. Set to null to disable
+      required_status_checks:
+        # Required. Require branches to be up to date before merging.
+        strict: true
+        # Required. The list of status checks to require in order to merge into this branch
+        contexts: []
+      # Required. Enforce all configured restrictions for administrators. Set to true to enforce required status checks for repository administrators. Set to null to disable.
+      enforce_admins: true
+      # Required. Restrict who can push to this branch. Team and user restrictions are only available for organization-owned repositories. Set to null to disable.
+      restrictions:
+        users: []
+        teams: []
+
+labels:
+  - name: backlog
+    color: ce7048
+    description: To be addressed in a future sprint
+
+  - name: bug
+    color: d73a4a
+    description: "A defect: something isn't working"
+
+  - name: duplicate
+    color: cfd3d7
+    description: This issue or pull request already exists
+
+  - name: invalid
+    color: e4e669
+    description: This doesn't seem right
+
+  - name: pm_approved
+    color: f4eb30
+    description: Approved by Product Manager
+
+  - name: po_approved
+    color: b5f95c
+    description: Approved by Product Owner
+
+  - name: question
+    color: d876e3
+    description: Further information is requested
+
+  - name: severity 1 critical
+    color: d73a4a
+    description: Critical severity  bug
+
+  - name: severity 2 high
+    color: d73a4a
+    description: High severity bug
+
+  - name: severity 3 medium
+    color: d73a4a
+    description: Medium severity bug
+
+  - name: severity 4 low
+    color: d73a4a
+    description: Low severity bug
+
+  - name: task
+    color: d4c5f9
+    description: A small body of work related to a user story or bug
+
+  - name: test
+    color: c6f79b
+    description: Automated test or manual test plan
+
+  - name: wontfix
+    color: ffffff
+    description: This will not be worked on
