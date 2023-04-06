@@ -2,10 +2,10 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ master ]
+    branches: [ main ]
   schedule:
     - cron: '27 2 * * 1'
 
@@ -46,7 +46,7 @@ jobs:
     #- run: |
     #   make bootstrap
     #   make release
-    
+
     ## VA-CODE-PROJECT-TEMPLATE ##
     # Note: you may want to comment this section out on a new VA code repository until code has been added
     ## VA-CODE-PROJECT-TEMPLATE ##

@@ -5,7 +5,7 @@ Thanks for taking the time to contribute! If you want to contribute, but are not
 ## Do you want to contribute?
 - Check the list of open issues. Either assign an existing issue to yourself, or create a new one that you would like work on and discuss your ideas and use cases.
 - Fork the repository on GitHub
-- Create a topic branch from where you want to base your work. This is usually master.
+- Create a topic branch from where you want to base your work. This is usually main.
 - Make commits of logical units with explanatory commit messages.
 - Push your changes to a topic branch in your fork of the repository.
 - Open a new GitHub pull request with the code changes.
