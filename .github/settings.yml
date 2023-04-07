@@ -5,7 +5,7 @@ repository:
   ## VA-CODE-PROJECT-TEMPLATE ##
   delete_branch_on_merge: false
 branches:
-  - name: master
+  - name: main
     ## VA-CODE-PROJECT-TEMPLATE ##
     # https://developer.github.com/v3/repos/branches/#update-branch-protection
     # Branch Protection settings. Set to null to disable
