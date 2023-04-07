@@ -26,7 +26,7 @@ name: "build-and-invalidate-cf-cache"
 on:
   push:
     branches:
-      - "master"
+      - "main"
 
 jobs:
   ci:
@@ -73,7 +73,7 @@ jobs:
 
 ## Versioning
 
-Every commit that lands on master for this project triggers an automatic build as well as a tagged release called `latest`. If you don't wish to live on the bleeding edge you may use a stable release instead. See [releases](../../releases/latest) for the available versions.
+Every commit that lands on main for this project triggers an automatic build as well as a tagged release called `latest`. If you don't wish to live on the bleeding edge you may use a stable release instead. See [releases](../../releases/latest) for the available versions.
 
 ```yaml
 - uses: "marvinpinto/action-inject-ssm-secrets@<VERSION>"
@@ -81,7 +81,7 @@ Every commit that lands on master for this project triggers an automatic build a
 
 ## How to get help
 
-The main [README](https://github.com/marvinpinto/actions/blob/master/README.md) for this project has a bunch of information related to debugging & submitting issues. If you're still stuck, try and get a hold of me on [keybase](https://keybase.io/marvinpinto) and I will do my best to help you out.
+The main [README](https://github.com/marvinpinto/actions/blob/main/README.md) for this project has a bunch of information related to debugging & submitting issues. If you're still stuck, try and get a hold of me on [keybase](https://keybase.io/marvinpinto) and I will do my best to help you out.
 
 ## License
 
