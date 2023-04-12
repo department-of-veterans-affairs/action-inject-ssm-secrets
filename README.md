@@ -1,5 +1,9 @@
 # AWS SSM Build Secrets for GitHub Actions
 
+***
+Note: This action is based on and forked from https://github.com/marvinpinto/action-inject-ssm-secrets. If there is interest in the background and history of this action, that repo is the best place to look for it.
+***
+
 This action injects AWS SSM Parameter Store secrets as environment variables into your GitHub Actions builds.
 
 It makes it easier to follow [Amazon IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in respect to principle of least privilege and tracking credentials usage. Combined with the `aws-actions/configure-aws-credentials` action, this allows you to inject any combination of secrets from multiple stores, using different credential contexts.
@@ -8,12 +12,8 @@ It makes it easier to follow [Amazon IAM best practices](https://docs.aws.amazon
 
 1. [Usage Examples](#usage-examples)
 1. [Supported Parameters](#supported-parameters)
-1. [Event Triggers](#event-triggers)
 1. [Versioning](#versioning)
-1. [How to get help](#how-to-get-help)
 1. [License](#license)
-
-> **NOTE**: The `marvinpinto/action-inject-ssm-secrets` repository is an automatically generated mirror of the [marvinpinto/actions](https://github.com/marvinpinto/actions) monorepo containing this and other actions. Please file issues and pull requests over there.
 
 ## Usage Examples
 
@@ -45,12 +45,12 @@ jobs:
           role-to-assume: "arn:aws:iam::111111111111:role/build-and-deploy-website"
           role-duration-seconds: 1800 # 30 mins
 
-      - uses: "marvinpinto/action-inject-ssm-secrets@latest"
+      - uses: "department-of-veterans-affairs/action-inject-ssm-secrets@latest"
         with:
           ssm_parameter: "/build-secrets/${{ env.BUILD_STAGE }}/cloudflare-account-id"
           env_variable_name: "cloudflare_account_id"
 
-      - uses: "marvinpinto/action-inject-ssm-secrets@latest"
+      - uses: "department-of-veterans-affairs/action-inject-ssm-secrets@latest"
         with:
           ssm_parameter: "/build-secrets/${{ env.BUILD_STAGE }}/cloudflare-api-token"
           env_variable_name: "cloudflare_api_token"
@@ -76,12 +76,18 @@ jobs:
 Every commit that lands on main for this project triggers an automatic build as well as a tagged release called `latest`. If you don't wish to live on the bleeding edge you may use a stable release instead. See [releases](../../releases/latest) for the available versions.
 
 ```yaml
-- uses: "marvinpinto/action-inject-ssm-secrets@<VERSION>"
+- uses: "department-of-veterans-affairs/action-inject-ssm-secrets@<VERSION>"
 ```
 
-## How to get help
+## Development
+`yarn install`: install dependencies<br />
+`yarn test`: run Jest tests<br />
+`yarn lint`: run eslint and prettier<br />
+`yarn lintfix`: attempt to fix eslint and prettier errors<br />
+`yarn build`: run the webpack build<br />
+`yarn clean`: remove extraneous files<br />
 
-The main [README](https://github.com/marvinpinto/actions/blob/main/README.md) for this project has a bunch of information related to debugging & submitting issues. If you're still stuck, try and get a hold of me on [keybase](https://keybase.io/marvinpinto) and I will do my best to help you out.
+There is no need to commit code to `dist/`; merges to the `main` branch will in turn build the action and commit that build to the repo.
 
 ## License
 

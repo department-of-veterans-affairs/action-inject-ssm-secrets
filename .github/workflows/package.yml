@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'dist/**'
 
 name: Package
 
@@ -25,3 +27,9 @@ jobs:
           git add dist/
           git commit -m "chore: Update dist" || echo "No changes to commit"
           git push origin HEAD:main
+      - name: Refresh 'latest' tag
+        run: |
+          git tag -d latest || true
+          git push origin :latest || true
+          git tag latest
+          git push origin latest
