@@ -1,0 +1,54 @@
+{
+  "name": "aws-ssm-secrets",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Inject AWS SSM Parameter Store secrets as enviroment variables into your GitHub Actions builds",
+  "config": {
+    "eslintPaths": "src/**/*.ts __tests__/**/*.ts .*.js *.js",
+    "prettierPaths": "**/*.{json,md,yaml,yml} !package.json"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js --colors",
+    "clean": "rm -rf node_modules yarn-error.log",
+    "lint": "yarn run lint:eslint && yarn run lint:prettier",
+    "lint:eslint": "eslint --color --max-warnings=0 $npm_package_config_eslintPaths",
+    "lint:prettier": "prettier --color --list-different $npm_package_config_prettierPaths",
+    "lintfix": "yarn run lintfix:eslint && yarn run lintfix:prettier",
+    "lintfix:eslint": "eslint --color --fix $npm_package_config_eslintPaths",
+    "lintfix:prettier": "prettier --color --write $npm_package_config_prettierPaths",
+    "test": "jest --env=node --colors"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "aws-sdk": "^2.892.0"
+  },
+  "main": "dist/index.js",
+  "license": "MIT",
+  "eslintIgnore": [
+    "!.*.js"
+  ],
+  "devDependencies": {
+    "terser-webpack-plugin": "^4.2.3",
+    "ts-loader": "^8",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "@babel/core": "^7.13.16",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^15.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^24.3.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^26.6.3",
+    "jest-circus": "^26.6.3",
+    "prettier": "^2.1.2",
+    "typescript": "^4.2.3"
+  }
+}

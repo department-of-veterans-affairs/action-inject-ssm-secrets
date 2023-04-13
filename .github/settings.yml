@@ -5,26 +5,26 @@ repository:
   ## VA-CODE-PROJECT-TEMPLATE ##
   delete_branch_on_merge: false
 branches:
-  - name: master
+  - name: main
     ## VA-CODE-PROJECT-TEMPLATE ##
     # https://developer.github.com/v3/repos/branches/#update-branch-protection
     # Branch Protection settings. Set to null to disable
-    # default settings commented out below that should be applied to a new VA code project repository: 
+    # default settings commented out below that should be applied to a new VA code project repository:
     # required_pull_request_reviews, equired_approving_review_count, dismiss_stale_reviews, require_code_owner_reviews, and dismissal_restrictions: users: teams:
     ## VA-CODE-PROJECT-TEMPLATE ##
     protection:
       # Required. Require at least one approving review on a pull request, before merging. Set to null to disable.
       # required_pull_request_reviews:
-        ## The number of approvals required. (1-6)
-        # required_approving_review_count: 1
-        ## Dismiss approved reviews automatically when a new commit is pushed.
-        # dismiss_stale_reviews: true
-        # Blocks merge until code owners have reviewed.
-        # require_code_owner_reviews: false
-        ## Specify which users and teams can dismiss pull request reviews. Pass an empty dismissal_restrictions object to disable. User and team dismissal_restrictions are only available for organization-owned repositories. Omit this parameter for personal repositories.
-        # dismissal_restrictions:
-        #   users: []
-        #   teams: []
+      ## The number of approvals required. (1-6)
+      # required_approving_review_count: 1
+      ## Dismiss approved reviews automatically when a new commit is pushed.
+      # dismiss_stale_reviews: true
+      # Blocks merge until code owners have reviewed.
+      # require_code_owner_reviews: false
+      ## Specify which users and teams can dismiss pull request reviews. Pass an empty dismissal_restrictions object to disable. User and team dismissal_restrictions are only available for organization-owned repositories. Omit this parameter for personal repositories.
+      # dismissal_restrictions:
+      #   users: []
+      #   teams: []
       # Required. Require status checks to pass before merging. Set to null to disable
       required_status_checks:
         # Required. Require branches to be up to date before merging.
