@@ -12,7 +12,7 @@
     "clean": "rm -rf node_modules yarn-error.log",
     "lint": "yarn run lint:eslint && yarn run lint:prettier",
     "lint:eslint": "eslint --color --max-warnings=0 $npm_package_config_eslintPaths",
-    "lint:prettier": "prettier --color --list-different $npm_package_config_prettierPaths",
+    "lint:prettier": "prettier --list-different $npm_package_config_prettierPaths",
     "lintfix": "yarn run lintfix:eslint && yarn run lintfix:prettier",
     "lintfix:eslint": "eslint --color --fix $npm_package_config_eslintPaths",
     "lintfix:prettier": "prettier --color --write $npm_package_config_prettierPaths",
@@ -36,7 +36,7 @@
     "@types/jest": "^26.0.22",
     "@types/node": "^15.0.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
+    "@typescript-eslint/parser": "^5.59.1",
     "babel-jest": "^26.6.3",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
@@ -48,7 +48,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "ts-loader": "^8",
     "typescript": "^4.2.3",
-    "webpack": "^4.41.4",
+    "webpack": "^5.58.0",
     "webpack-cli": "^3.3.10"
   }
 }
