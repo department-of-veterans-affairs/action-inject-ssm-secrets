@@ -48,5 +48,7 @@ module.exports = {
     ],
   },
 
-  plugins: [new webpack.IgnorePlugin(/\/iconv-loader$/)],
+  plugins: [new webpack.IgnorePlugin({
+    resourceRegExp: /\/iconv-loader$/
+  })],
 };
