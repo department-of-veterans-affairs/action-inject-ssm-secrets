@@ -1,8 +1,10 @@
 # AWS SSM Build Secrets for GitHub Actions
 
-***
+---
+
 Note: This action is based on and forked from https://github.com/marvinpinto/action-inject-ssm-secrets. If there is interest in the background and history of this action, that repo is the best place to look for it.
-***
+
+---
 
 This action injects AWS SSM Parameter Store secrets as environment variables into your GitHub Actions builds.
 
@@ -80,6 +82,7 @@ Every commit that lands on main for this project triggers an automatic build as 
 ```
 
 ## Development
+
 `yarn install`: install dependencies<br />
 `yarn test`: run Jest tests<br />
 `yarn lint`: run eslint and prettier<br />
