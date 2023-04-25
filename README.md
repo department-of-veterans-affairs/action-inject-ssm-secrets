@@ -90,7 +90,7 @@ Every commit that lands on main for this project triggers an automatic build as 
 `yarn build`: run the webpack build<br />
 `yarn clean`: remove extraneous files<br />
 
-There is no need to commit code to `dist/`; merges to the `main` branch will in turn build the action and commit that build to the repo.
+When your work is complete, be sure to run `yarn build` to build the dist files, and commit those.
 
 ## License
 

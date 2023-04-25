@@ -1,8 +1,10 @@
-name: Tests
+name: Test and package
 on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - "dist/**"
 
 jobs:
   tests:
@@ -15,3 +17,12 @@ jobs:
         run: |
           yarn install
           yarn test
+      - name: Build dist
+        run: |
+          yarn build
+      - name: Commit build
+        run: |
+          git config --global user.name "GitHub Actions"
+          git add dist/
+          git commit -m "chore: Update dist" || echo "No changes to commit"
+          git push origin "${{ github.head_ref }}"
