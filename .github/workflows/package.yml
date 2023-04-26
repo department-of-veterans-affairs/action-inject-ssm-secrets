@@ -2,10 +2,8 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "dist/**"
 
-name: Package
+name: Refresh latest tag
 
 jobs:
   check:
@@ -20,17 +18,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Package
-        run: |
-          yarn install
-          yarn test
-          yarn build
-      - name: Commit
-        run: |
-          git config --global user.name "GitHub Actions"
-          git add dist/
-          git commit -m "chore: Update dist" || echo "No changes to commit"
-          git push origin HEAD:main
       - name: Refresh 'latest' tag
         run: |
           git tag -d latest || true
