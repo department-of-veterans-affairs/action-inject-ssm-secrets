@@ -9,7 +9,7 @@ inputs:
     description: "The corresponding environment variable name to assign the secret to"
     required: true
 runs:
-  using: "node16"
+  using: "node20"
   main: "dist/index.js"
 branding:
   icon: "lock"
